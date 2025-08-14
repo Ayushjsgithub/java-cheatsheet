@@ -1,54 +1,47 @@
-const topics = {
-    variables: {
-        title: "Java Variables",
-        description: "Variables store data for later use in a program.",
-        code: `public class VariablesExample {
-    public static void main(String[] args) {
-        int age = 25;
-        String name = "Jenna";
-        double height = 5.9;
+// escape HTML to prevent injection when adding topics dynamically
+function escapeHTML(str) {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
 
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
-        System.out.println("Height: " + height);
-    }
-}`
-    },
-    loops: {
-        title: "Java Loops",
-        description: "Loops help repeat code until a condition is met.",
-        code: `public class LoopExample {
-    public static void main(String[] args) {
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("Count: " + i);
-        }
-    }
-}`
-    },
-    arrays: {
-        title: "Java Arrays",
-        description: "Arrays store multiple values of the same type in a single variable.",
-        code: `public class ArrayExample {
-    public static void main(String[] args) {
-        String[] fruits = {"Apple", "Banana", "Cherry"};
+// Dynamically populate sidebar from topics.js
+function loadSidebar() {
+    const sidebar = document.getElementById("topicList");
+    sidebar.innerHTML = ""; // clear in case of reload
+    Object.keys(topics).forEach(key => {
+        const li = document.createElement("li");
+        li.textContent = topics[key].title;
+        li.dataset.topic = key;
+        sidebar.appendChild(li);
+    });
+}
 
-        for (int i = 0; i < fruits.length; i++) {
-            System.out.println(fruits[i]);
-        }
-    }
-}`
-    }
-};
+// Display topic content in main area
+function displayTopic(topicKey) {
+    const topic = topics[topicKey];
+    const contentArea = document.getElementById("contentArea");
 
+    if (!topic) {
+        contentArea.innerHTML = `<h1>Topic Not Found</h1><p>Please select a valid topic.</p>`;
+        return;
+    }
+
+    contentArea.innerHTML = `
+        <h1>${escapeHTML(topic.title)}</h1>
+        <p>${escapeHTML(topic.description)}</p>
+        <pre><code class="language-java">${escapeHTML(topic.code)}</code></pre>
+    `;
+    Prism.highlightAll();
+}
+
+// Event delegation for topic clicks
 document.getElementById("topicList").addEventListener("click", (e) => {
     if (e.target.tagName === "LI") {
-        const topicKey = e.target.getAttribute("data-topic");
-        const topic = topics[topicKey];
-        document.getElementById("contentArea").innerHTML = `
-            <h1>${topic.title}</h1>
-            <p>${topic.description}</p>
-            <pre><code class="language-java">${topic.code}</code></pre>
-        `;
-        Prism.highlightAll();
+        displayTopic(e.target.dataset.topic);
     }
 });
+
+// load sidebar on page load
+document.addEventListener("DOMContentLoaded", loadSidebar);
