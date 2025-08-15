@@ -1,47 +1,55 @@
-// escape HTML to prevent injection when adding topics dynamically
-function escapeHTML(str) {
-    return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
-}
+function updateActiveLink() {
+    const sections = document.querySelectorAll("section");
+    const links = document.querySelectorAll(".sidebar a");
 
-// Dynamically populate sidebar from topics.js
-function loadSidebar() {
-    const sidebar = document.getElementById("topicList");
-    sidebar.innerHTML = ""; // clear in case of reload
-    Object.keys(topics).forEach(key => {
-        const li = document.createElement("li");
-        li.textContent = topics[key].title;
-        li.dataset.topic = key;
-        sidebar.appendChild(li);
+    sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionId = section.id;
+
+        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            links.forEach((link) => {
+                if (link.getAttribute("href") === `#${sectionId}`) {
+                    link.classList.add("active");
+                } else {
+                    link.classList.remove("active");
+                }
+            });
+        }
     });
 }
 
-// Display topic content in main area
-function displayTopic(topicKey) {
-    const topic = topics[topicKey];
-    const contentArea = document.getElementById("contentArea");
+window.addEventListener("scroll", updateActiveLink);
 
-    if (!topic) {
-        contentArea.innerHTML = `<h1>Topic Not Found</h1><p>Please select a valid topic.</p>`;
-        return;
-    }
+document.addEventListener("DOMContentLoaded", updateActiveLink);
 
-    contentArea.innerHTML = `
-        <h1>${escapeHTML(topic.title)}</h1>
-        <p>${escapeHTML(topic.description)}</p>
-        <pre><code class="language-java">${escapeHTML(topic.code)}</code></pre>
-    `;
-    Prism.highlightAll();
-}
-
-// Event delegation for topic clicks
-document.getElementById("topicList").addEventListener("click", (e) => {
-    if (e.target.tagName === "LI") {
-        displayTopic(e.target.dataset.topic);
-    }
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
 });
 
-// load sidebar on page load
-document.addEventListener("DOMContentLoaded", loadSidebar);
+window.onscroll = function () {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+};
+
+document.getElementById("scrollTopBtn").onclick = function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+const sectionTitles = document.querySelectorAll("section h1");
+
+sectionTitles.forEach(title => {
+    title.addEventListener("click", function () {
+        const section = this.parentElement;
+        section.classList.toggle("collapsed");
+    });
+});

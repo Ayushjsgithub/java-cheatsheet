@@ -11,26 +11,81 @@
 
 <body>
     <div class="container">
-        <!-- Sidebar -->
+        <!-- Sidebar-->
         <aside class="sidebar">
             <h2>Topics</h2>
-            <ul id="topicList">
-                <li data-topic="variables">Variables</li>
-                <li data-topic="loops">Loops</li>
-                <li data-topic="arrays">Arrays</li>
-                <li data-topic="methods">Methods</li>
+            <ul>
+                <li><a href="#variables">Variables</a></li>
+                <li><a href="#loops">Loops</a></li>
+                <li><a href="#arrays">Arrays</a></li>
+                <li><a href="#methods">Methods</a></li>
             </ul>
         </aside>
 
         <!-- Main Content -->
-        <main class="content" id="contentArea">
-            <h1>Welcome to Java Fundamentals Cheatsheet</h1>
-            <p>Select a topic from the sidebar to view notes and examples.</p>
+        <main class="content">
+            <section id="variables">
+                <h1>Java Variables</h1>
+                <p>Variables store data for later use in a program.</p>
+                <pre><code class="language-java">public class VariablesExample {
+    public static void main(String[] args) {
+        int age = 25;
+        String name = "Jenna";
+        double height = 5.9;
+
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Height: " + height);
+    }
+}</code></pre>
+            </section>
+
+            <section id="loops">
+                <h1>Java Loops</h1>
+                <p>Loops help repeat code until a condition is met.</p>
+                <pre><code class="language-java">public class LoopExample {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Count: " + i);
+        }
+    }
+}</code></pre>
+            </section>
+
+            <section id="arrays">
+                <h1>Java Arrays</h1>
+                <p>Arrays store multiple values of the same type in a single variable.</p>
+                <pre><code class="language-java">public class ArrayExample {
+    public static void main(String[] args) {
+        String[] fruits = {"Apple", "Banana", "Cherry"};
+
+        for (int i = 0; i < fruits.length; i++) {
+            System.out.println(fruits[i]);
+        }
+    }
+}</code></pre>
+            </section>
+
+            <section id="methods">
+                <h1>Java Methods</h1>
+                <p>Methods allow you to define reusable code.</p>
+                <pre><code class="language-java">public class MethodExample {
+    public static void main(String[] args) {
+        greet("Jenna");
+    }
+
+    public static void greet(String name) {
+        System.out.println("Hello, " + name + "!");
+    }
+}</code></pre>
+            </section>
         </main>
     </div>
 
+    <button id="scrollTopBtn" class="scroll-top-btn">⬆️ Scroll to Top</button>
+
+
     <script src="js/script.js"></script>
-    <script src="js/topics.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 </body>
 
