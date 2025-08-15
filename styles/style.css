@@ -45,12 +45,8 @@ body {
 }
 
 .sidebar li a.active {
-    background: #007bff;
+    background: transparent;
     font-weight: bold;
-}
-
-.sidebar li a.active:hover {
-    background: #007bff;
 }
 
 .sidebar li:not(:hover) a {
