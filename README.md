@@ -1,1 +1,1 @@
-# Java Cheatsheet
+# Java CheatSheet
