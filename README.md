@@ -1,3 +1,3 @@
-# Learn Java the right way
+# Learn Java the right way.
 
 
