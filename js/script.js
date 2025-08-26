@@ -1,55 +1,46 @@
+const sections = document.querySelectorAll("section");
+const links = document.querySelectorAll(".sidebar a");
+
 function updateActiveLink() {
-    const sections = document.querySelectorAll("section");
-    const links = document.querySelectorAll(".sidebar a");
-
     sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const sectionId = section.id;
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const id = section.id;
 
-        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+        if (window.scrollY >= sectionTop - sectionHeight / 3) {
             links.forEach((link) => {
-                if (link.getAttribute("href") === `#${sectionId}`) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
+                link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
             });
         }
     });
 }
 
-window.addEventListener("scroll", updateActiveLink);
+document.querySelectorAll('.sidebar a').forEach(link => {
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        target.scrollIntoView({ behavior: "smooth" });
+    });
+});
+
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+    scrollTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    updateActiveLink();
+});
+
+scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+const headers = document.querySelectorAll("section h1, section h2");
+
+headers.forEach(header => {
+    header.style.cursor = "pointer";
+    header.addEventListener("click", () => {
+        header.parentElement.classList.toggle("collapsed");
+    });
+});
 
 document.addEventListener("DOMContentLoaded", updateActiveLink);
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    });
-});
-
-window.onscroll = function () {
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        scrollTopBtn.style.display = "block";
-    } else {
-        scrollTopBtn.style.display = "none";
-    }
-};
-
-document.getElementById("scrollTopBtn").onclick = function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-};
-
-const sectionTitles = document.querySelectorAll("section h1");
-
-sectionTitles.forEach(title => {
-    title.addEventListener("click", function () {
-        const section = this.parentElement;
-        section.classList.toggle("collapsed");
-    });
-});

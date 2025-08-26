@@ -2,17 +2,23 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Java Fundamentals Cheatsheet</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles/style.css" />
+
+    <!-- Prism.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+
 </head>
 
 <body>
     <div class="container">
-        <!-- Sidebar-->
-        <aside class="sidebar">
+        <!-- Navigation -->
+        <nav class="sidebar">
             <h2>Topics</h2>
             <ul>
                 <li><a href="#variables">Variables</a></li>
@@ -20,14 +26,16 @@
                 <li><a href="#arrays">Arrays</a></li>
                 <li><a href="#methods">Methods</a></li>
             </ul>
-        </aside>
+        </nav>
 
         <!-- Main Content -->
         <main class="content">
+            <!-- Variables -->
             <section id="variables">
                 <h1>Java Variables</h1>
                 <p>Variables store data for later use in a program.</p>
-                <pre><code class="language-java">public class VariablesExample {
+                <pre><code class="language-java">
+public class VariablesExample {
     public static void main(String[] args) {
         int age = 25;
         String name = "Jenna";
@@ -37,25 +45,31 @@
         System.out.println("Age: " + age);
         System.out.println("Height: " + height);
     }
-}</code></pre>
+}
+                </code></pre>
             </section>
 
+            <!-- Loops -->
             <section id="loops">
-                <h1>Java Loops</h1>
+                <h2>Java Loops</h2>
                 <p>Loops help repeat code until a condition is met.</p>
-                <pre><code class="language-java">public class LoopExample {
+                <pre><code class="language-java">
+public class LoopExample {
     public static void main(String[] args) {
         for (int i = 1; i <= 5; i++) {
             System.out.println("Count: " + i);
         }
     }
-}</code></pre>
+}
+                </code></pre>
             </section>
 
+            <!-- Arrays -->
             <section id="arrays">
-                <h1>Java Arrays</h1>
+                <h2>Java Arrays</h2>
                 <p>Arrays store multiple values of the same type in a single variable.</p>
-                <pre><code class="language-java">public class ArrayExample {
+                <pre><code class="language-java">
+public class ArrayExample {
     public static void main(String[] args) {
         String[] fruits = {"Apple", "Banana", "Cherry"};
 
@@ -63,13 +77,16 @@
             System.out.println(fruits[i]);
         }
     }
-}</code></pre>
+}
+                </code></pre>
             </section>
 
+            <!-- Methods -->
             <section id="methods">
-                <h1>Java Methods</h1>
+                <h2>Java Methods</h2>
                 <p>Methods allow you to define reusable code.</p>
-                <pre><code class="language-java">public class MethodExample {
+                <pre><code class="language-java">
+public class MethodExample {
     public static void main(String[] args) {
         greet("Jenna");
     }
@@ -77,16 +94,20 @@
     public static void greet(String name) {
         System.out.println("Hello, " + name + "!");
     }
-}</code></pre>
+}
+                </code></pre>
             </section>
         </main>
     </div>
 
-    <button id="scrollTopBtn" class="scroll-top-btn">⬆️ Scroll to Top</button>
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">⬆️</button>
 
+    <!-- Scripts -->
+    <script src="js/script.js" defer></script>
+    <!-- Prism Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js" defer></script>
 
-    <script src="js/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-</body>
 
 </html>
