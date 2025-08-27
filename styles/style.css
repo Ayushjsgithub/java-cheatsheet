@@ -51,11 +51,7 @@ body {
     padding: 10px;
     display: block;
     border-radius: 5px;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-.sidebar a {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease;
 }
 
 .sidebar a.active {
@@ -63,7 +59,6 @@ body {
     color: #222;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
-
 
 /* Main Content */
 .content {
@@ -73,7 +68,7 @@ body {
     overflow-y: auto;
 }
 
-/* Section Spacing */
+/* Sections */
 section {
     transition: max-height 0.3s ease, padding 0.3s ease;
     overflow: hidden;
@@ -81,7 +76,7 @@ section {
 
 section.collapsed {
     max-height: 40px;
-    /* Just heading visible */
+    /* Only show heading */
     padding-bottom: 0;
     background-color: #f9f9f9;
     border-left: 4px solid #ccc;
@@ -89,9 +84,14 @@ section.collapsed {
 
 section:not(.collapsed) {
     max-height: 1000px;
-    /* Big enough to fit content */
+    /* Big enough for content */
 }
 
+/* Collapsible Sections Hide Content */
+section.collapsed p,
+section.collapsed pre {
+    display: none;
+}
 
 /* Headings */
 h1,
@@ -109,11 +109,11 @@ pre[class*="language-"] {
     font-family: "Courier New", monospace;
     font-size: 14px;
     line-height: 1.5;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin: 10px 0 20px;
     overflow-x: auto;
 }
 
+/* Code Toolbar Buttons */
 div.code-toolbar>.toolbar button,
 div.code-toolbar>.toolbar button:focus {
     background-color: #fff !important;
@@ -139,7 +139,6 @@ div.code-toolbar>.toolbar button[data-copy-state="success"] {
     /* Green for success */
     color: #fff !important;
 }
-
 
 /* Inline Code */
 code {
@@ -168,19 +167,6 @@ code {
 .scroll-top-btn:hover {
     background: #444;
     opacity: 1;
-}
-
-/* Collapsible Sections */
-section.collapsed p,
-section.collapsed pre {
-    display: none;
-}
-
-section.collapsed {
-    background-color: #f9f9f9;
-    border-left: 4px solid #ccc;
-    padding-left: 10px;
-    transition: background-color 0.3s ease, border-left 0.3s ease;
 }
 
 /* Responsive Design */
