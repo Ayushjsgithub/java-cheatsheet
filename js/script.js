@@ -6,17 +6,17 @@ const headers = document.querySelectorAll("section h1, section h2");
 
 // highlight the active sidebar link
 function updateActiveLink() {
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;      // Distance from top
-        const sectionHeight = section.offsetHeight; // Height of section
-        const id = section.id;                      // Section ID
+    let current = "";
 
-        // Check if we're currently viewing this section
-        if (window.scrollY >= sectionTop - sectionHeight / 3) {
-            links.forEach(link => {
-                link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
-            });
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+            current = section.id;
         }
+    });
+
+    links.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
     });
 }
 
