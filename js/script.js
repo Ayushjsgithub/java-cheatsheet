@@ -42,11 +42,18 @@ scrollTopBtn.addEventListener("click", () => {
 
 // Toggle collapse when clicking section headers
 headers.forEach(header => {
-    header.style.cursor = "pointer";
     header.addEventListener("click", () => {
-        header.parentElement.classList.toggle("collapsed");
+        const section = header.parentElement;
+        const isCollapsed = section.classList.toggle("collapsed");
+
+        if (!isCollapsed) {
+            section.style.maxHeight = section.scrollHeight + "px";
+        } else {
+            section.style.maxHeight = "45px";
+        }
     });
 });
+
 
 // Run active link highlight on page load
 document.addEventListener("DOMContentLoaded", updateActiveLink);
