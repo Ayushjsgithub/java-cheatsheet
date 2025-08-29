@@ -169,6 +169,59 @@ code {
 }
 
 
+/* 🌙 DARK MODE STYLES */
+body.dark {
+    background: #121212 !important;
+    color: #f5f5f5 !important;
+}
+
+/* Sidebar */
+body.dark .sidebar {
+    background: #1e1e1e !important;
+    color: #fff !important;
+    border-right: 1px solid #333;
+}
+
+/* Sidebar Links */
+body.dark .sidebar a {
+    color: #ccc !important;
+}
+
+body.dark .sidebar a:hover {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+body.dark .sidebar a.active {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+/* Main Content Area */
+body.dark .content {
+    background: #181818 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Headings */
+body.dark h1,
+body.dark h2 {
+    color: #f5f5f5 !important;
+}
+
+/* Inline Code */
+body.dark code {
+    background: #333 !important;
+    color: #ffeb3b !important;
+    border-radius: 4px;
+}
+
+/* Prism.js Code Blocks */
+body.dark pre[class*="language-"] {
+    background: #2d2d2d !important;
+    color: #f5f5f5 !important;
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
     background-color: #fff;
@@ -187,39 +240,11 @@ code {
     background-color: #f5f5f5;
 }
 
-/* Dark Mode Styles */
-body.dark {
-    background: #1e1e1e;
-    color: #f5f5f5;
+body.dark .theme-toggle {
+    background-color: #333 !important;
+    color: #fff !important;
 }
 
-body.dark .sidebar {
-    background: #111;
-}
-
-body.dark .sidebar a {
-    color: #ddd;
-}
-
-body.dark .sidebar a.active {
-    background: #f5f5f5;
-    color: #111;
-}
-
-body.dark .content {
-    background: #222;
-}
-
-/* Dark Mode for Prism.js */
-body.dark pre[class*="language-"] {
-    background: #2d2d2d !important;
-}
-
-/* Dark Mode for Inline Code */
-body.dark code {
-    background: #333;
-    color: #ffeb3b;
-}
 
 
 /* Responsive Design */
