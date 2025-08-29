@@ -57,3 +57,26 @@ headers.forEach(header => {
 
 // Run active link highlight on page load
 document.addEventListener("DOMContentLoaded", updateActiveLink);
+
+
+const themeToggle = document.getElementById("themeToggle");
+
+// Load saved theme from localStorage
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeToggle.textContent = "☀️ Light Mode";
+}
+
+// Toggle Theme on Click
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        themeToggle.textContent = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark");
+    } else {
+        themeToggle.textContent = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
+    }
+});
+
